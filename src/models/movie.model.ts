@@ -1,6 +1,6 @@
 import { Schema, model, Document, SchemaType } from "mongoose";
 
-export interface Movie extends Document {
+export interface IMovie extends Document {
 
     title: string;
     director: string;
@@ -11,7 +11,7 @@ export interface Movie extends Document {
 }
 
 
-const movieSchema = new Schema<Movie>({
+const movieSchema = new Schema<IMovie>({
 
     title: {
         type: String,
@@ -54,6 +54,6 @@ const movieSchema = new Schema<Movie>({
 })
 
 
-const Movie = model<Movie>('Movie',movieSchema)
+const Movie = model<IMovie>('Movie',movieSchema)
 
 export default Movie

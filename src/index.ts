@@ -1,3 +1,4 @@
+import movies from './controller/movie.controller'
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import express, { Application } from 'express';
@@ -11,10 +12,14 @@ const MONGO_URI = process.env.MONGO_URI;
 /*** MiddleWare ***/ 
 APP.use(express.json())
 
-/*** Test Route ***/ 
 APP.get('/', (req, res) => {
   res.send('Hello, TypeScript + Node.js + Express + Mongo!');
 });
+
+APP.use('/api/movie',movies)
+
+
+
 
 /*** Validate environment variables ***/ 
 if (!MONGO_URI) {
