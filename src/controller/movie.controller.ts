@@ -1,0 +1,48 @@
+import { Request, Response, } from "express";
+import Movie, { IMovie } from "../models/movie.model";
+import express from 'express'
+
+const router = express.Router();
+
+
+
+
+router.post('/', async (req: Request, res: Response) => {
+
+
+    try {
+
+        const { title, director, releaseYear, genres, rating } = req.body as IMovie;
+        if (!title || !director || !releaseYear) {
+            res.status(403).json({
+                "status": 403,
+                "error": "Error",
+                "message": "Title, director, and release year are required'"
+            })
+        }
+
+        const newMovie = new Movie({
+            title,
+            director,
+            releaseYear,
+            genres,
+            rating
+        })
+        const result = await newMovie.save()
+        res.status(201).json({ result, message: 'Movie Added successfully' })
+
+
+    }
+    catch (err) {
+        res.status(500).json({ 
+            status: 500,
+            error: 'Internal Server Error',
+            message: 'An unexpected error occurred while processing your request.' 
+        });
+     }
+
+})
+
+
+export default router
+
