@@ -33,11 +33,12 @@ router.post('/', async (req: Request, res: Response) => {
 
 
     }
-    catch (err) {
+    catch (err:any) {
         res.status(500).json({ 
             status: 500,
             error: 'Internal Server Error',
-            message: 'An unexpected error occurred while processing your request.' 
+            message: 'An unexpected error occurred while processing your request.' ,
+            ReqError:err.message
         });
      }
 
