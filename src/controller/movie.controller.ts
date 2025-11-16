@@ -12,7 +12,7 @@ router.post('/', async (req: Request, res: Response) => {
 
     try {
 
-        const { title, director, releaseYear, genres, rating } = req.body as IMovie;
+        const { title, director, releaseYear, genre , rating } = req.body as IMovie;
         if (!title || !director || !releaseYear) {
             res.status(403).json({
                 "status": 403,
@@ -25,7 +25,7 @@ router.post('/', async (req: Request, res: Response) => {
             title,
             director,
             releaseYear,
-            genres,
+            genre ,
             rating
         })
         const result = await newMovie.save()
