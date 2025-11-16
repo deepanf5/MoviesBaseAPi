@@ -34,9 +34,11 @@ const movieSchema = new Schema<IMovie>({
         min:1888
     },
     genres:{
-
         type:String,
         required:true,
+        minlength:2,
+        maxlength:255
+
     },
     rating: {
         type:Number,
