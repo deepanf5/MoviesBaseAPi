@@ -5,7 +5,7 @@ export interface IMovie extends Document {
     title: string;
     director: string;
     releaseYear: number;
-    genres: string[];
+    genres: string;
     rating: number;
     createAt:Date
 }
@@ -35,9 +35,8 @@ const movieSchema = new Schema<IMovie>({
     },
     genres:{
 
-        type:[String],
+        type:String,
         required:true,
-        default:[]
     },
     rating: {
         type:Number,
