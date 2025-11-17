@@ -7,6 +7,13 @@ export interface IMovie extends Document {
     releaseYear: number;
     genre : string;
     rating: number;
+    duration: number;
+    language: string;
+    country: string;
+    cast:[string];
+    description:Number;
+    budget:number;
+    boxoffice:number;
     createAt:Date
 }
 
@@ -46,6 +53,48 @@ const movieSchema = new Schema<IMovie>({
         max:10,
         required:true,
         default:0
+    },
+    duration: {
+        type:Number,
+        min:0,
+        max:500,
+        required:true
+    },
+    language:{
+        type:String,
+        minLength:2,
+        maxLength:255,
+        required:true
+    },
+    country: {
+          type:String,
+        minLength:2,
+        maxLength:255,
+        required:true
+
+    },
+    cast: {
+        type:[String],
+        required: true
+    },
+     description: {
+        type:String,
+        minlength:2,
+        max:255,
+        required:true
+     },
+    budget:{
+        type:Number,
+        minlength:100,
+        maxlength:50000,
+        required:true
+
+    },
+    boxoffice:{
+         type:Number,
+        minlength:100,
+        maxlength:1000000,
+        required:true
     },
     createAt:{
         type:Date,
