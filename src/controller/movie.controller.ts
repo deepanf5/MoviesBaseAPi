@@ -34,7 +34,7 @@ router.post('/', async (req: Request, res: Response) => {
             description,
             budget,
             boxoffice,
-            createAt: Date
+            createAt: Date.now()
         })
         const result = await newMovie.save()
         res.status(201).json({ result, message: 'Movie Added successfully' })
