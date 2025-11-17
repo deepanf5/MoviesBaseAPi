@@ -12,7 +12,7 @@ router.post('/', async (req: Request, res: Response) => {
 
     try {
 
-        const { title, director, releaseYear, genre , rating } = req.body as IMovie;
+        const { title, director, releaseYear, genre, rating } = req.body as IMovie;
         if (!title || !director || !releaseYear) {
             res.status(403).json({
                 "status": 403,
@@ -25,7 +25,7 @@ router.post('/', async (req: Request, res: Response) => {
             title,
             director,
             releaseYear,
-            genre ,
+            genre,
             rating
         })
         const result = await newMovie.save()
@@ -33,14 +33,36 @@ router.post('/', async (req: Request, res: Response) => {
 
 
     }
-    catch (err:any) {
-        res.status(500).json({ 
+    catch (err: any) {
+        res.status(500).json({
             status: 500,
             error: 'Internal Server Error',
-            message: 'An unexpected error occurred while processing your request.' ,
-            ReqError:err.message
+            message: 'An unexpected error occurred while processing your request.',
+            ReqError: err.message
         });
-     }
+    }
+
+})
+
+
+router.get('/', async (req: Request, res: Response) => {
+    try {
+        const movie = await Movie.find().populate('title')
+        if (movie) {
+             res.status(200).json(movie); 
+        }
+    }
+    catch(err:any) {
+        res.status(500).json(
+            {
+             status: 500,
+            error: 'Internal Server Error',
+            message: err.message,
+            ReqError: err.message
+            }
+        )
+    }
+
 
 })
 
