@@ -1,4 +1,5 @@
-import movies from './controller/movie.controller'
+import cros from 'cors'
+import movies from './controller/movie.controller';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import express, { Application } from 'express';
@@ -11,6 +12,11 @@ const MONGO_URI = process.env.MONGO_URI;
 
 /*** MiddleWare ***/ 
 APP.use(express.json())
+APP.use(cros({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE',],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}))
 
 APP.get('/', (req, res) => {
   res.send('Hello, TypeScript + Node.js + Express + Mongo!');
