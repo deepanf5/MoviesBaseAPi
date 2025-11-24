@@ -22,7 +22,7 @@ router.post('/', async (req: Request, res: Response) => {
             res.status(403).json({
                 "status": 403,
                 "error": "Error",
-                "message": "Eamil or password or createTimeand or isMoiveBaseAdmin are required'"
+                "message": "Eamil or password  or isMoiveBaseAdmin are required'"
             })
         }
 
