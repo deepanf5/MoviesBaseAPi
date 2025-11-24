@@ -1,15 +1,16 @@
 import { Schema, model, Document } from "mongoose";
 
-export interface Admin extends Document {
+export interface IAdmin extends Document {
 
-   userName:String,
-   email:String,
-   password:String,
-   createTime:Date
+   userName:string,
+   email:string,
+   password:string,
+   createTime:Date,
+   isMoiveBaseAdmin:Boolean
 }
 
 
-const AdminSchema = new Schema<Admin>({
+const AdminSchema = new Schema<IAdmin>({
 
     userName: {
         type: String,
@@ -27,18 +28,24 @@ const AdminSchema = new Schema<Admin>({
     },
     password :{
         type:String,
-        required:true
+        required:true,
+        minlength:4,
+        maxlength:50
 
     },
     createTime:{
         type:Date,
         required:true,
         default:Date.now
+    },
+    isMoiveBaseAdmin:{
+        type:Boolean,
+        required:true,
     }
 
 })
 
 
-const Admin = model<Admin>('Admin',AdminSchema)
+const Admin = model<IAdmin>('Admin',AdminSchema)
 
 export default Admin

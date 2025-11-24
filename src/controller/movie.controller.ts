@@ -9,11 +9,22 @@ const router = express.Router();
 
 router.post('/', async (req: Request, res: Response) => {
 
-
     try {
 
         const { title, director, releaseYear, genre, rating, duration, language, country, cast, description, budget, boxoffice } = req.body as IMovie;
-        if (!title || !director || !releaseYear) {
+        if (!title 
+            || !director 
+            || !releaseYear 
+            || !genre 
+            || !rating
+            || !duration 
+            || !language 
+            || !country 
+            || !cast 
+            || !description 
+            || !budget 
+            || !boxoffice 
+        ) {
             res.status(403).json({
                 "status": 403,
                 "error": "Error",
