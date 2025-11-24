@@ -27,9 +27,9 @@ router.post('/', async (req: Request, res: Response) => {
         }
 
         const newAdmin = new Admin({
-            email: req.body.email,
-            password: req.body.password,
-            isMoiveBaseAdmin: hashedPassword,
+            email,
+            password: hashedPassword,
+            isMoiveBaseAdmin,
         })
         const result = await newAdmin.save()
         res.status(201).json({ result, message: 'Admin Added successfully' })
