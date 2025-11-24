@@ -31,7 +31,7 @@ const AdminSchema = new Schema<IAdmin>({
         type:String,
         required:true,
         minlength:4,
-        maxlength:50
+        maxlength:500
 
     },
     createTime:{
