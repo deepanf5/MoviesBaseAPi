@@ -34,7 +34,15 @@ router.post('/', async (req: Request, res: Response) => {
         const result = await newAdmin.save()
         res.status(201).json({ result, message: 'Admin Added successfully' })
     }
-    catch (err) {
+    catch (err:any) {
+         res.status(500).json(
+            {
+                status: 500,
+                error: 'Internal Server Error',
+                message: err.message,
+                ReqError: err.message
+            }
+        )
 
     }
 
