@@ -1,4 +1,5 @@
 import cros from 'cors'
+import admin from './controller/Admin.controller'
 import movies from './controller/movie.controller';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
@@ -23,6 +24,7 @@ APP.get('/', (req, res) => {
 });
 
 APP.use('/api/movie',movies)
+APP.use('/api/admin', admin)
 
 
 
