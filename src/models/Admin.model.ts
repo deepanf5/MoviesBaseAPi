@@ -24,7 +24,8 @@ const AdminSchema = new Schema<IAdmin>({
         type: String,
         required: true,
         minLength: 3,
-        maxLength: 255
+        maxLength: 255,
+        unique:true
     },
     password :{
         type:String,
