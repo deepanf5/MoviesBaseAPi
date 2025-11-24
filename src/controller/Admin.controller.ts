@@ -27,6 +27,7 @@ router.post('/', async (req: Request, res: Response) => {
         }
 
         const newAdmin = new Admin({
+            userName:req.body.userName,
             email: req.body.email,
             password: hashedPassword,
             isMoiveBaseAdmin:req.body.isMoiveBaseAdmin,
