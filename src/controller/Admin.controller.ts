@@ -50,6 +50,26 @@ router.post('/', async (req: Request, res: Response) => {
 })
 
 
+router.get('/', async (req:Request, res:Response) => {
+     try {
+        const admin = await Admin.find()
+        if (admin) {
+            res.status(200).json(admin);
+        }
+    }
+    catch (err: any) {
+        res.status(500).json(
+            {
+                status: 500,
+                error: 'Internal Server Error',
+                message: err.message,
+                ReqError: err.message
+            }
+        )
+    }
+})
+
+
 router.delete('/:id', async (req: Request, res: Response) => {
     try {
         const admin = await Admin.findByIdAndDelete(req.params.id)
