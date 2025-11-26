@@ -26,7 +26,7 @@ APP.get('/', (req, res) => {
 
 APP.use('/api/movie',movies)
 APP.use('/api/admin', admin)
-APP.use('api/login',auth)
+APP.use('/api/login',auth)
 
 
 
