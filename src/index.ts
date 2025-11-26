@@ -1,4 +1,5 @@
 import cros from 'cors'
+import auth from './controller/Auth.controller'
 import admin from './controller/Admin.controller'
 import movies from './controller/movie.controller';
 import dotenv from 'dotenv';
@@ -25,6 +26,7 @@ APP.get('/', (req, res) => {
 
 APP.use('/api/movie',movies)
 APP.use('/api/admin', admin)
+APP.use('app/login',auth)
 
 
 
