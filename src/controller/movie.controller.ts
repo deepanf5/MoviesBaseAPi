@@ -107,7 +107,7 @@ router.get('/:id', async (req: Request, res: Response) => {
 
 })
 
-router.put('/:id', async (req: Request, res: Response) => {
+router.put('/:id', isAdmin, async (req: Request, res: Response) => {
 
     try {
         const movie = await Movie.findByIdAndUpdate(req.params.id, {
@@ -141,7 +141,7 @@ router.put('/:id', async (req: Request, res: Response) => {
 })
 
 
-router.delete('/:id', async (req:Request, res:Response) => {
+router.delete('/:id',isAdmin, async (req:Request, res:Response) => {
 
     try{
          const movie = await Movie.findByIdAndDelete(req.params.id)
