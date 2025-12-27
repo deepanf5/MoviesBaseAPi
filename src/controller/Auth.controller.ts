@@ -3,12 +3,17 @@ import { Request, Response, } from "express";
 import express from 'express';
 import Admin, { IAdmin } from "../models/Admin.model";
 const router = express.Router()
+import { jwtVerify, SignJWT } from 'jose';
+import dotenv from 'dotenv';
+dotenv.config();
+
+
+const secret = new TextEncoder().encode(process.env.jwtPrivateKey);
+
 
 router.post('/', async (req: Request, res: Response) => {
 
     try {
-
-
         const { email, password } = req.body
         if (!email
             || !password
@@ -21,7 +26,6 @@ router.post('/', async (req: Request, res: Response) => {
         }
 
         let adminUser = await Admin.findOne({ email }) as IAdmin
-
         if (!adminUser) {
             res.status(400).json({ message: 'Invalid email or Password' })
         }
@@ -31,8 +35,19 @@ router.post('/', async (req: Request, res: Response) => {
             return res.status(400).json({ message: 'Invalid email or password' });
         }
 
+
+        if (adminUser.isMoiveBaseAdmin) {
+
+        let adminUser = await Admin.findOne({ email }) as IAdmin
+            const token = await new SignJWT({ userId:adminUser._id, username: adminUser.userName, adminRole:adminUser.isMoiveBaseAdmin})
+                .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
+                .setExpirationTime('30m') // token expires in 30 minutes
+                .sign(secret);
+            res.status(200).json({ message: "Login successful", token: token });
+
+        }
+
         // Success
-        res.status(200).json({ message: "Login successful" });
     }
     catch (err: any) {
         res.status(500).json(
