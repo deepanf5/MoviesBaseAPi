@@ -20,12 +20,12 @@ router.post('/', async (req: Request, res: Response) => {
             })
         }
 
-        let user = await Admin.findOne({ email }) as IAdmin
+        let adminUser = await Admin.findOne({ email }) as IAdmin
 
-        if (!user) {
+        if (!adminUser) {
             res.status(400).json({ message: 'Invalid email or Password' })
         }
-        const isMatch = await bcrypt.compare(req.body.password, user.password);
+        const isMatch = await bcrypt.compare(req.body.password, adminUser.password);
 
         if (!isMatch) {
             return res.status(400).json({ message: 'Invalid email or password' });
