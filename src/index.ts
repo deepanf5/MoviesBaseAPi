@@ -24,7 +24,7 @@ APP.get('/', (req, res) => {
   res.send('Hello, TypeScript + Node.js + Express + Mongo!');
 });
 
-APP.use('/api/movie',movies)
+APP.use('/api/movies',movies)
 APP.use('/api/admin', admin)
 APP.use('/api/login',auth)
 
