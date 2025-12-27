@@ -1,13 +1,14 @@
 import { Request, Response, } from "express";
 import Movie, { IMovie } from "../models/movie.model";
 import express from 'express'
+import { isAdmin } from "../middleware/auth.middleware";
 
 const router = express.Router();
 
 
 
 
-router.post('/', async (req: Request, res: Response) => {
+router.post('/', isAdmin,async (req: Request, res: Response) => {
 
     try {
 
