@@ -1,4 +1,4 @@
-import cros from 'cors'
+import cors  from 'cors'
 import auth from './controller/Auth.controller'
 import admin from './controller/Admin.controller'
 import movies from './controller/movie.controller';
@@ -14,11 +14,13 @@ const MONGO_URI = process.env.MONGO_URI;
 
 /*** MiddleWare ***/ 
 APP.use(express.json())
-APP.use(cros({
+APP.use(cors({
   origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE',],
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
-}))
+}));
+
+APP.options('*', cors()); // handle preflight
 
 APP.get('/', (req, res) => {
   res.send('Hello, TypeScript + Node.js + Express + Mongo!');
